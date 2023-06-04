@@ -1,35 +1,37 @@
-#GUI code file
+#GUI and commands code
 
 import tkinter as tk
 import time
 import math
+
+#first window creator 
 def createYesNoWindow():
     #first window constructor
     yesNoWindow = tk.Tk()
     yesNoWindow.title('Timer lasera')
 
     #Set window to appear in the middle
-    windowWidtg = 330
+    windowWidth = 330
     windowHeight = 122
     screenWidth = yesNoWindow.winfo_screenwidth()
     screenHeight = yesNoWindow.winfo_screenheight()
 
-    x_pos = math.floor((screenWidth - windowWidtg) / 2)
+    x_pos = math.floor((screenWidth - windowWidth) / 2)
     y_pos = math.floor(((screenHeight - windowHeight) / 2) * 0.80)
 
-    yesNoWindow.geometry(f"{windowWidtg}x{windowHeight}+{x_pos}+{y_pos}")
+    yesNoWindow.geometry(f"{windowWidth}x{windowHeight}+{x_pos}+{y_pos}")
 
     #NO button command
     def no():
         yesNoWindow.withdraw()
-        time.sleep(5)
+        time.sleep(2)  #2 minuty = 120
         yesNoWindow.deiconify()
 
     #YES button command
     def yes():
         yesNoWindow.withdraw()
-        time.sleep(3)
-        creeateYesWindow()
+        time.sleep(2) #1h = 3600
+        createYesWindow()
         yesNoWindow.destroy()
 
     #Labels and Buttons for first window
@@ -66,8 +68,8 @@ def createYesNoWindow():
     yesNoWindow.mainloop()
 
 
-#second window creator in a function to make it callable only when needed
-def creeateYesWindow():
+#second window creator 
+def createYesWindow():
     yesWindow = tk.Tk()
     yesWindow.title('Timer lasera')
 
@@ -83,9 +85,9 @@ def creeateYesWindow():
     yesWindow.geometry(f"{windowWidtg}x{windowHeight}+{x_pos}+{y_pos}")
 
 #OK button command
-    def yes2():
+    def ok():
         yesWindow.withdraw()
-        time.sleep(2)
+        time.sleep(2) #1h = 3600
         yesWindow.deiconify()
 
 #Label and Button for second window
@@ -107,6 +109,6 @@ def creeateYesWindow():
     bg='light green',
     justify='center',
     font='Times 18 bold',
-    command= yes2
+    command= ok
     )
     yesButton2.pack(expand=True,fill=tk.BOTH)
