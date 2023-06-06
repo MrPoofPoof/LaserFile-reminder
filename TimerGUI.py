@@ -5,38 +5,38 @@ import time
 import math
 
 #first window creator 
-def createYesNoWindow():
+def createInitialWindow():
     #first window constructor
-    yesNoWindow = tk.Tk()
-    yesNoWindow.title('Timer lasera')
+    initialWindow = tk.Tk()
+    initialWindow.title('Timer lasera')
 
     #Set window to appear in the middle
     windowWidth = 330
     windowHeight = 122
-    screenWidth = yesNoWindow.winfo_screenwidth()
-    screenHeight = yesNoWindow.winfo_screenheight()
+    screenWidth = initialWindow.winfo_screenwidth()
+    screenHeight = initialWindow.winfo_screenheight()
 
     x_pos = math.floor((screenWidth - windowWidth) / 2)
     y_pos = math.floor(((screenHeight - windowHeight) / 2) * 0.80)
 
-    yesNoWindow.geometry(f"{windowWidth}x{windowHeight}+{x_pos}+{y_pos}")
+    initialWindow.geometry(f"{windowWidth}x{windowHeight}+{x_pos}+{y_pos}")
 
     #NO button command
-    def no():
-        yesNoWindow.withdraw()
+    def shortWindowHide():
+        initialWindow.withdraw()
         time.sleep(2)  #2 minuty = 120
-        yesNoWindow.deiconify()
+        initialWindow.deiconify()
 
     #YES button command
-    def yes():
-        yesNoWindow.withdraw()
+    def timerStart():
+        initialWindow.withdraw()
         time.sleep(2) #1h = 3600
-        createYesWindow()
-        yesNoWindow.destroy()
+        createRecurringWindow()
+        initialWindow.destroy()
 
     #Labels and Buttons for first window
     isLoggerOn = tk.Label(
-        yesNoWindow,
+        initialWindow,
         text = 'Czy włączono logger lasera?',
         width = 22,
         height = 2,
@@ -47,52 +47,52 @@ def createYesNoWindow():
         )
     isLoggerOn.pack()
 
-    yesButton = tk.Button(
-        yesNoWindow,
+    timerStartButton = tk.Button(
+        initialWindow,
         text='TAK +1h',
         bg='light green',
         justify='center',
         font='Times 18 bold',
-        command= yes
+        command= timerStart
     )
-    yesButton.pack(side='left', expand=True,fill=tk.BOTH)
+    timerStartButton.pack(side='left', expand=True,fill=tk.BOTH)
 
-    noButton = tk.Button(
-        yesNoWindow,
+    shortWindowHideButton = tk.Button(
+        initialWindow,
         text='NIE +2 min',
         bg='red',
         font='Times 18 bold',
-        command = no
+        command = shortWindowHide
     )
-    noButton.pack(side='right', expand= True,fill=tk.BOTH)
-    yesNoWindow.mainloop()
+    shortWindowHideButton.pack(side='right', expand= True,fill=tk.BOTH)
+    initialWindow.mainloop()
 
 
 #second window creator 
-def createYesWindow():
-    yesWindow = tk.Tk()
-    yesWindow.title('Timer lasera')
+def createRecurringWindow():
+    recurringWindow = tk.Tk()
+    recurringWindow.title('Timer lasera')
 
     #Set window to appear in the middle
     windowWidtg = 330
     windowHeight = 122
-    screenWidth = yesWindow.winfo_screenwidth()
-    screenHeight = yesWindow.winfo_screenheight()
+    screenWidth = recurringWindow.winfo_screenwidth()
+    screenHeight = recurringWindow.winfo_screenheight()
 
     x_pos = math.floor((screenWidth - windowWidtg) / 2)
     y_pos = math.floor(((screenHeight - windowHeight) / 2) * 0.80)
 
-    yesWindow.geometry(f"{windowWidtg}x{windowHeight}+{x_pos}+{y_pos}")
+    recurringWindow.geometry(f"{windowWidtg}x{windowHeight}+{x_pos}+{y_pos}")
 
 #OK button command
-    def ok():
-        yesWindow.withdraw()
+    def timerRestart():
+        recurringWindow.withdraw()
         time.sleep(2) #1h = 3600
-        yesWindow.deiconify()
+        recurringWindow.deiconify()
 
 #Label and Button for second window
     changeLog = tk.Label(
-        yesWindow,
+        recurringWindow,
         text = 'ZMIEŃ LOG LASERA \n(nie nad linią!)',
         width = 22,
         height = 2,
@@ -104,11 +104,17 @@ def createYesWindow():
     changeLog.pack()
 
     yesButton2 = tk.Button(
-    yesWindow,
+    recurringWindow,
     text='OK',
     bg='light green',
     justify='center',
     font='Times 18 bold',
-    command= ok
+    command= timerRestart
     )
     yesButton2.pack(expand=True,fill=tk.BOTH)
+
+#program start
+
+time.sleep(2) #8 minut = 480 s
+
+createInitialWindow()
