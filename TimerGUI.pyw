@@ -72,7 +72,7 @@ def createInitialWindow():
     timerStartButton = createButton(initialWindow, "TAK +{time}h".format(time=round((timerDelay/3600))), 'light green', timerStart)
     timerStartButton.pack(side = 'left', expand = True, fill = tk.BOTH)
 
-    shortWindowHideButton = createButton(initialWindow, 'NIE +{time}min'.format(round((shortHideButtonDelay/60))), 'red', shortWindowHide)
+    shortWindowHideButton = createButton(initialWindow, "NIE +{time}min".format(round((shortHideButtonDelay/60))), 'red', shortWindowHide)
     shortWindowHideButton.pack(side = 'right', expand = True, fill = tk.BOTH)
     initialWindow.mainloop()
 
