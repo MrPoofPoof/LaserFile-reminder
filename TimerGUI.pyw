@@ -25,7 +25,7 @@ def createWindow():
     x_pos = math.floor((screenWidth - windowWidth) / 2)
     y_pos = math.floor(
         ((screenHeight - windowHeight) / 2) * 0.80)  # multiply by 0.8
-        # to make the window appear more to the top of the screen
+    # to make the window appear more to the top of the screen
 
     window.geometry(f"{windowWidth}x{windowHeight}+{x_pos}+{y_pos}")
     return window
@@ -82,7 +82,7 @@ def createInitialWindow():
     timerStartButton.pack(side='left', expand=True, fill=tk.BOTH)
 
     shortWindowHideButton = createButton(
-        initialWindow, "NIE +{time}min".format(round(
+        initialWindow, "NIE +{time}min".format(time=round(
             (shortHideButtonDelay/60))), 'red', shortWindowHide)
     shortWindowHideButton.pack(side='right', expand=True, fill=tk.BOTH)
     initialWindow.mainloop()
